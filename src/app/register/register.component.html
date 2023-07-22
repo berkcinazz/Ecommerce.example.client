@@ -27,7 +27,8 @@
 
             <small class="uk-width-1-1 uk-text-danger" *ngIf="
                 registerForm.get('phoneNumber')?.touched &&
-                f['phoneNumber'].hasError('required')
+                f['phoneNumber'].hasError('required') ||
+                f['phoneNumber'].hasError('minlength')
               ">
                 (*) Phone Number must be 11 digit least and cannot contain except numbers
             </small>
