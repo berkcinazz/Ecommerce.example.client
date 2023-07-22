@@ -3,9 +3,27 @@
         <form class="bg-white px-6 py-8 rounded shadow-md text-black w-full" (ngSubmit)="login()" [formGroup]="loginForm" novalidate>
             <h1 class="mb-8 text-3xl text-center">Sign in</h1>
 
+            <small class="uk-width-1-1 uk-text-danger" *ngIf="
+                loginForm.get('email')?.touched &&
+                f['email'].hasError('required')
+              ">
+                (*) Email must be 4 digit at least
+            </small>
+            <small class="uk-width-1-1 uk-text-danger" *ngIf="
+            loginForm.get('email')?.touched && f['email'].hasError('email')
+              ">
+                (*) Please enter a valid email address
+            </small>
             <input type="text" class="block border border-grey-light w-full p-3 rounded mb-4" name="email" formControlName="email"
                 placeholder="Email" />
 
+                <small class="uk-width-1-1 uk-text-danger" *ngIf="
+                (loginForm.get('password')?.touched &&
+                  f['password'].hasError('required')) ||
+                f['password'].hasError('minlength')
+              ">
+                (*) Confirm Password must be 4 digit at least
+            </small>
             <input type="password" class="block border border-grey-light w-full p-3 rounded mb-4" name="password" formControlName="password"
                 placeholder="Password" />
 

@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
       ]),
       password: new FormControl('', [
         Validators.required,
-        Validators.minLength(3),
+        Validators.minLength(4),
       ]),
     });
   }
@@ -32,16 +32,19 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private encryptionService: EncryptionService
   ) {}
-
+  get f() {
+    return this.loginForm.controls;
+  }
   login() {
-    this.authService.login(this.loginForm.value).subscribe((response) => {
+    this.authService.login(this.loginForm.value).subscribe((response:any) => {
       var encrypted = this.encryptionService.set(
         '123456$#@$^@1ERF',
         JSON.stringify(this.loginForm.value)
       );
       this.localStorageService.set('refresh', encrypted);
-      this.authService.setToken(response.token);
-      if (response.token) {
+      console.log(response);
+      this.authService.setToken(response.accessToken.token);
+      if (response.accessToken.token) {
         this.authService.setAuthenticated(true);
         this.router.navigateByUrl('/');
       }

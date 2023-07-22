@@ -32,15 +32,15 @@ export class RegisterComponent implements OnInit {
       phoneNumber: new FormControl('', [
         Validators.required,
         Validators.pattern('^[0-9]*$'),
-        Validators.minLength(11),
+        Validators.minLength(10),
       ]),
       password: new FormControl('', [
         Validators.required,
-        Validators.minLength(3),
+        Validators.minLength(4),
       ]),
       passwordVerify: new FormControl('', [
         Validators.required,
-        Validators.minLength(3),
+        Validators.minLength(4),
       ]),
     });
   }
