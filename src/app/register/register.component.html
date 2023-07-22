@@ -1,38 +1,90 @@
 <div class="bg-gradient-to-b from-sky-400 to-sky-200 min-h-screen flex flex-col">
     <div class="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2">
-        <div class="bg-white px-6 py-8 rounded shadow-md text-black w-full">
+        <form class="bg-white px-6 py-8 rounded shadow-md text-black w-full" (ngSubmit)="register()"
+            [formGroup]="registerForm" novalidate>
             <h1 class="mb-8 text-3xl text-center">Sign up</h1>
+            <small class="uk-width-1-1 uk-text-danger" *ngIf="
+                (registerForm.get('firstName')?.touched &&
+                  f['firstName'].hasError('required')) ||
+                f['firstName'].hasError('minlength')
+              ">
+                (*) First Name must be 2 digit at least
+            </small>
             <input type="text" class="block border border-grey-light w-full p-3 rounded mb-4" name="firstName"
-                placeholder="First Name" />
+                formControlName="firstName" placeholder="First Name" />
 
+
+            <small class="uk-width-1-1 uk-text-danger" *ngIf="
+                (registerForm.get('lastName')?.touched &&
+                  f['lastName'].hasError('required')) ||
+                f['lastName'].hasError('minlength')
+              ">
+                (*) Last Name must be 2 digit at least
+            </small>
             <input type="text" class="block border border-grey-light w-full p-3 rounded mb-4" name="lastName"
-                placeholder="Last Name" />
+                formControlName="lastName" placeholder="Last Name" />
 
-            <input type="text" class="block border border-grey-light w-full p-3 rounded mb-4" name="email"
-                placeholder="Email" />
 
+            <small class="uk-width-1-1 uk-text-danger" *ngIf="
+                registerForm.get('phoneNumber')?.touched &&
+                f['phoneNumber'].hasError('required')
+              ">
+                (*) Phone Number must be 11 digit least and cannot contain except numbers
+            </small>
             <input type="tel" class="block border border-grey-light w-full p-3 rounded mb-4" name="phone"
-                placeholder="Phone Number" />
+                formControlName="phoneNumber" placeholder="530-000-00-00" />
 
+
+            <small class="uk-width-1-1 uk-text-danger" *ngIf="
+                registerForm.get('email')?.touched &&
+                f['email'].hasError('required')
+              ">
+                (*) Email must be 4 digit at least
+            </small>
+            <small class="uk-width-1-1 uk-text-danger" *ngIf="
+                registerForm.get('email')?.touched && f['email'].hasError('email')
+              ">
+                (*) Please enter a valid email address
+            </small>
+            <input type="text" class="block border border-grey-light w-full p-3 rounded mb-4" name="email"
+                formControlName="email" placeholder="Email" />
+
+            <small class="uk-width-1-1 uk-text-danger" *ngIf="
+                (registerForm.get('password')?.touched &&
+                  f['password'].hasError('required')) ||
+                f['password'].hasError('minlength')
+              ">
+                (*) Password must be 4 digit at least
+            </small>
             <input type="password" class="block border border-grey-light w-full p-3 rounded mb-4" name="password"
-                placeholder="Password" />
-            <input type="password" class="block border border-grey-light w-full p-3 rounded mb-4" name="confirmPassword"
-                placeholder="Confirm Password" />
+                formControlName="password" placeholder="Password" />
 
-            <button type="submit"
+                
+            <small class="uk-width-1-1 uk-text-danger" *ngIf="
+                (registerForm.get('password')?.touched &&
+                  f['password'].hasError('required')) ||
+                f['password'].hasError('minlength')
+              ">
+                (*) Confirm Password must be 4 digit at least
+            </small>
+            <input type="password" class="block border border-grey-light w-full p-3 rounded mb-4" name="passwordVerify"
+                formControlName="passwordVerify" placeholder="Confirm Password" />
+
+
+            <button type="submit" [disabled]='registerForm.invalid'
                 class="w-full text-center py-3 rounded bg-primary text-white hover:bg-green-dark focus:outline-none my-1">Create
                 Account</button>
 
             <div class="text-center text-sm text-grey-dark mt-4">
                 By signing up, you agree to the
-                <a class="no-underline border-b border-grey-dark text-grey-dark" href="#">
+                <a class="no-underline border-b border-grey-dark text-grey-dark" routerLink="/">
                     Terms of Service
                 </a> and
-                <a class="no-underline border-b border-grey-dark text-grey-dark" href="#">
+                <a class="no-underline border-b border-grey-dark text-grey-dark" routerLink="/">
                     Privacy Policy
                 </a>
             </div>
-        </div>
+        </form>
 
         <div class="text-grey-dark mt-6">
             Already have an account?
