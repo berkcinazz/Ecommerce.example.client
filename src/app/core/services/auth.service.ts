@@ -162,5 +162,6 @@ export class AuthService {
   logout(): any {
     this.setAuthenticated(false);
     this.localStorage.remove('token');
+    this.localStorage.remove('refresh');
   }
 }

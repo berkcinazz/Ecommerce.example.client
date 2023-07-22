@@ -4,13 +4,14 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { LocalStorageService } from '../core/services/local-storage.service';
 import { Router } from '@angular/router';
 import { EncryptionService } from '../core/services/encryption.service';
+import { BaseComponent } from '../base/base.component';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent extends BaseComponent implements OnInit {
   loginForm!: FormGroup;
   ngOnInit(): void {
     this.loginForm = new FormGroup({
@@ -31,7 +32,9 @@ export class LoginComponent implements OnInit {
     private localStorageService: LocalStorageService,
     private router: Router,
     private encryptionService: EncryptionService
-  ) {}
+  ) {
+    super();
+  }
   get f() {
     return this.loginForm.controls;
   }
@@ -42,7 +45,6 @@ export class LoginComponent implements OnInit {
         JSON.stringify(this.loginForm.value)
       );
       this.localStorageService.set('refresh', encrypted);
-      console.log(response);
       this.authService.setToken(response.accessToken.token);
       if (response.accessToken.token) {
         this.authService.setAuthenticated(true);

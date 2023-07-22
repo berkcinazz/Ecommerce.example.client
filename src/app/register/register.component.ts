@@ -5,13 +5,14 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { EncryptionService } from '../core/services/encryption.service';
 import { LocalStorageService } from '../core/services/local-storage.service';
 import { Router } from '@angular/router';
+import { BaseComponent } from '../base/base.component';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent  extends BaseComponent implements OnInit {
   registerForm!: FormGroup;
 
   ngOnInit(): void {
@@ -49,7 +50,9 @@ export class RegisterComponent implements OnInit {
     private encryptionService: EncryptionService,
     private localStorageService: LocalStorageService,
     private router: Router
-  ) {}
+  ) {
+    super();
+  }
   get f() {
     return this.registerForm.controls;
   }

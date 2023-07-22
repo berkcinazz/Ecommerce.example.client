@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { Injector, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
@@ -11,18 +11,21 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { JwtModule } from '@auth0/angular-jwt';
 import { CoreModule } from './core/core.module';
+import { BaseComponent } from './base/base.component';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
 }
 
+export let AppInjector: Injector;
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     FooterComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    BaseComponent
   ],
   imports: [
     BrowserModule,
@@ -40,4 +43,8 @@ export function tokenGetter() {
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { 
+  constructor(private injector : Injector){
+    AppInjector = this.injector;
+  }
+}
