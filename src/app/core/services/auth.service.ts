@@ -160,6 +160,7 @@ export class AuthService {
     return tokenUserModel;
   }
   logout(): any {
+    this.setAuthenticated(false);
     this.localStorage.remove('token');
   }
 }
