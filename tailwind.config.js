@@ -24,6 +24,7 @@ module.exports = {
         rose : colors.rose,
         amber : colors.amber,
         lime : colors.lime,
+        'light-yellow' : '#fde047',
       },
     },
     plugins: [],

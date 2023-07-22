@@ -1,16 +1,16 @@
 <div class="bg-gradient-to-b from-sky-400 to-sky-200 min-h-screen flex flex-col">
     <div class="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2">
-        <div class="bg-white px-6 py-8 rounded shadow-md text-black w-full">
+        <form class="bg-white px-6 py-8 rounded shadow-md text-black w-full" (ngSubmit)="login()" [formGroup]="loginForm" novalidate>
             <h1 class="mb-8 text-3xl text-center">Sign in</h1>
 
-            <input type="text" class="block border border-grey-light w-full p-3 rounded mb-4" name="email"
+            <input type="text" class="block border border-grey-light w-full p-3 rounded mb-4" name="email" formControlName="email"
                 placeholder="Email" />
 
-            <input type="password" class="block border border-grey-light w-full p-3 rounded mb-4" name="password"
+            <input type="password" class="block border border-grey-light w-full p-3 rounded mb-4" name="password" formControlName="password"
                 placeholder="Password" />
 
-            <button type="submit"
-                class="w-full text-center py-3 rounded bg-primary text-white hover:bg-green-dark focus:outline-none my-1">Sign in</button>
+            <button type="submit" [disabled]="loginForm.invalid"
+                class="w-full text-center py-3 rounded bg-primary text-white hover:bg-light-yellow focus:outline-none my-1">Sign in</button>
 
             <div class="text-center text-sm text-grey-dark mt-4">
                 By signing up, you agree to the
@@ -21,7 +21,7 @@
                     Privacy Policy
                 </a>
             </div>
-        </div>
+        </form>
 
         <div class="text-grey-dark mt-6">
             Don't you have an account?

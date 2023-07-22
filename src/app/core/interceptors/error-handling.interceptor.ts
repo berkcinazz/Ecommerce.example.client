@@ -20,20 +20,22 @@ export class ErrorHandlingInterceptor implements HttpInterceptor {
     return next.handle(request).pipe(
       catchError((errorResponse: HttpErrorResponse) => {
         let errorMessage = '';
-        console.log(errorResponse);
-
+        let errorMessageTitle = '';
+        console.log(errorResponse.error);
+        console.log(errorResponse.error.title);
         if (errorResponse.error instanceof ErrorEvent) {
           errorMessage = `Client Side Error: ${errorResponse.error.message}`;
         } else {
-          if (errorResponse.error?.Type)
+          if (errorResponse.error?.type)
           {
-            switch (errorResponse.error.Type) {
+            switch (errorResponse.error.type) {
               case 'https://example.com/probs/business':
-                errorMessage = ProcessBusinessException(errorResponse.error);
+                errorMessage = errorResponse.error.detail;
+                errorMessageTitle = errorResponse.error.title;
                 break;
   
               case 'https://example.com/probs/validation':
-                errorMessage = ProcessValidationException(errorResponse.error);
+                errorMessage = ProcessValidationException(errorResponse.error.detail);
                 break;
   
               case 'https://example.com/probs/authorization':
@@ -48,14 +50,11 @@ export class ErrorHandlingInterceptor implements HttpInterceptor {
             errorMessage = 'Something went wrong, please contact the system administrator';
           }
         }
-        this.toastr.error(errorMessage);
+        this.toastr.error(errorMessage, errorMessageTitle);
         return throwError(errorMessage);
       })
     );
   }
-}
-function ProcessBusinessException(error: any): string {
-  return error.Detail;
 }
 
 function ProcessValidationException(error: any): string {

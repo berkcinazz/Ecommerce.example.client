@@ -1,10 +1,50 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../core/services/auth.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { LocalStorageService } from '../core/services/local-storage.service';
+import { Router } from '@angular/router';
+import { EncryptionService } from '../core/services/encryption.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
+  loginForm!: FormGroup;
+  ngOnInit(): void {
+    this.loginForm = new FormGroup({
+      email: new FormControl('', [
+        Validators.required,
+        Validators.minLength(4),
+        Validators.email,
+      ]),
+      password: new FormControl('', [
+        Validators.required,
+        Validators.minLength(3),
+      ]),
+    });
+  }
 
+  constructor(
+    private authService: AuthService,
+    private localStorageService: LocalStorageService,
+    private router: Router,
+    private encryptionService: EncryptionService
+  ) {}
+
+  login() {
+    this.authService.login(this.loginForm.value).subscribe((response) => {
+      var encrypted = this.encryptionService.set(
+        '123456$#@$^@1ERF',
+        JSON.stringify(this.loginForm.value)
+      );
+      this.localStorageService.set('refresh', encrypted);
+      this.authService.setToken(response.token);
+      if (response.token) {
+        this.authService.setAuthenticated(true);
+        this.router.navigateByUrl('/');
+      }
+    });
+  }
 }
