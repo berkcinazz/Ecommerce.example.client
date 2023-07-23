@@ -12,6 +12,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { JwtModule } from '@auth0/angular-jwt';
 import { CoreModule } from './core/core.module';
 import { BaseComponent } from './base/base.component';
+import { MainpageComponent } from './mainpage/mainpage.component';
+import { CartComponent } from './cart/cart.component';
+import { ProductDetailComponent } from './product-detail/product-detail.component';
+import { ProductsComponent } from './products/products.component';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -25,7 +29,11 @@ export let AppInjector: Injector;
     FooterComponent,
     RegisterComponent,
     LoginComponent,
-    BaseComponent
+    BaseComponent,
+    MainpageComponent,
+    CartComponent,
+    ProductDetailComponent,
+    ProductsComponent
   ],
   imports: [
     BrowserModule,
