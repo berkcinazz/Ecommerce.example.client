@@ -21,7 +21,11 @@ export class BasketComponent implements OnInit {
       this.basketItems = data;
       console.log(data);
       console.log(this.basketItems);
-      this.totalAmount = this.basketItems.map(o => o.product.unitPrice).reduce((a, c) => { return a + c });
+      this.totalAmount = this.basketItems
+        .map((o) => o.product.unitPrice)
+        .reduce((a, c) => {
+          return a + c;
+        });
     });
   }
 
@@ -29,5 +33,19 @@ export class BasketComponent implements OnInit {
     this.basketService.delete(id).subscribe((data) => {
       this.getBasketItems();
     });
+  }
+
+  decreaseQuantity(item: GetBasketDto) {
+    if (item.quantity > 1) {
+      item.quantity--;
+      this.basketService.update(item).subscribe((data) => {});
+    } else {
+      this.deleteProductFromBasket(item.id);
+    }
+  }
+
+  increaseQuantity(item: GetBasketDto) {
+    item.quantity++;
+    this.basketService.update(item).subscribe((data) => {});
   }
 }

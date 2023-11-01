@@ -23,4 +23,10 @@ export class BasketService {
     return this.httpClient.delete<GetBasketDto>(url);
   }
 
+  update(dto:GetBasketDto): Observable<GetBasketDto> {
+    var url = this.apiUrl;
+    return this.httpClient.put<GetBasketDto>(url, dto);
+  }
+
+
 }
