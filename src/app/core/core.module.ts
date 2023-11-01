@@ -9,7 +9,7 @@ import { OverlayLoadingInterceptor } from './interceptors/overlay-loading.interc
 import { OverlayLoadingComponent } from './components/overlay-loading/overlay-loading.component';
 import { PathCompletePipe } from './pipes/path-complete.pipe';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
-import { AddProductComponent } from './add-product/add-product.component';
+import { AddProductComponent } from '../add-product/add-product.component';
 
 export function tokenGetter() {
   return localStorage.getItem('token');

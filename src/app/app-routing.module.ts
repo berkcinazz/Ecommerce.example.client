@@ -6,7 +6,7 @@ import { MainpageComponent } from './mainpage/mainpage.component';
 import { CartComponent } from './cart/cart.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { ProductsComponent } from './products/products.component';
-import { AddProductComponent } from './core/add-product/add-product.component';
+import { AddProductComponent } from './add-product/add-product.component';
 
 const routes: Routes = [
   { path : '', component : MainpageComponent},
