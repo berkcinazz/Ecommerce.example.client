@@ -28,5 +28,8 @@ export class BasketService {
     return this.httpClient.put<GetBasketDto>(url, dto);
   }
 
-
+  add(id:number):Observable<GetBasketDto>{
+    var url = this.apiUrl + `?id=${id}`;
+    return this.httpClient.post<GetBasketDto>(url, null);
+  }
 }

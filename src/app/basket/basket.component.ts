@@ -22,7 +22,7 @@ export class BasketComponent implements OnInit {
       console.log(data);
       console.log(this.basketItems);
       this.totalAmount = this.basketItems
-        .map((o) => o.product.unitPrice)
+        .map((o) => o.product.unitPrice * o.quantity)
         .reduce((a, c) => {
           return a + c;
         });
