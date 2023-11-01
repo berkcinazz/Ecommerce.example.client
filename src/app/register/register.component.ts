@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../core/services/auth.service';
-import { RegisterRequestModel } from '../core/models/registerRequestModel';
+import { RegisterRequestModel } from '../core/models/auth/registerRequestModel';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { EncryptionService } from '../core/services/encryption.service';
 import { LocalStorageService } from '../core/services/local-storage.service';

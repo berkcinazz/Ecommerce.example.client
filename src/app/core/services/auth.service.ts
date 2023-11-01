@@ -4,11 +4,11 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { LocalStorageService } from './local-storage.service';
-import { LoginResponseModel } from '../models/loginResponseModel';
-import { LoginRequestModel } from '../models/loginRequestModel';
-import { RegisterRequestModel } from '../models/registerRequestModel';
-import { ChangePasswordDto } from '../models/changePasswordDto';
-import { TokenUserModel } from '../models/tokenUserModel';
+import { LoginResponseModel } from '../models/auth/loginResponseModel';
+import { LoginRequestModel } from '../models/auth/loginRequestModel';
+import { RegisterRequestModel } from '../models/auth/registerRequestModel';
+import { ChangePasswordDto } from '../models/auth/changePasswordDto';
+import { TokenUserModel } from '../models/auth/tokenUserModel';
 import { JWTTokenClaim } from '../constants/jwtTokenClaim';
 import { environment } from 'src/environments/environment';
 
