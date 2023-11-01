@@ -5,6 +5,7 @@ import { PageRequest } from '../core/models/pageRequest';
 import { GetProductsModel } from '../core/models/product/getProductsModel';
 import { GenericPageableModel } from '../core/models/genericPageableModel';
 import { Product } from '../core/models/product/product';
+import { BasketService } from '../core/services/basket.service';
 
 @Component({
   selector: 'app-mainpage',
@@ -30,6 +31,14 @@ export class MainpageComponent implements OnInit {
         this.products = responseData;
       });
     });
+
+    
     
   }
+
+  addToBasket(productId: number){
+    
+  }
+
+
 }

@@ -22,7 +22,7 @@ export class ErrorHandlingInterceptor implements HttpInterceptor {
         let errorMessage = '';
         let errorMessageTitle = '';
         console.log(errorResponse.error);
-        console.log(errorResponse.error.title);
+        console.log(errorResponse.error?.title);
         if (errorResponse.error instanceof ErrorEvent) {
           errorMessage = `Client Side Error: ${errorResponse.error.message}`;
         } else {
@@ -31,7 +31,7 @@ export class ErrorHandlingInterceptor implements HttpInterceptor {
             switch (errorResponse.error.type) {
               case 'https://example.com/probs/business':
                 errorMessage = errorResponse.error.detail;
-                errorMessageTitle = errorResponse.error.title;
+                errorMessageTitle = errorResponse.error!.title;
                 break;
   
               case 'https://example.com/probs/validation':
