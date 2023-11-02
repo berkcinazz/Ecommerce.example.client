@@ -7,6 +7,7 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
 import { ProductsComponent } from './products/products.component';
 import { AddProductComponent } from './add-product/add-product.component';
 import { BasketComponent } from './basket/basket.component';
+import { OrdersComponent } from './orders/orders.component';
 
 const routes: Routes = [
   { path : '', component : MainpageComponent},
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'product-detail', component: ProductDetailComponent },//todo(berk) : add product id to path
   { path: 'products', component: ProductsComponent },
   { path: 'add-product', component: AddProductComponent },
+  { path: 'orders', component: OrdersComponent },
 ];
 
 @NgModule({

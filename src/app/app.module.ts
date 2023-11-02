@@ -16,6 +16,7 @@ import { MainpageComponent } from './mainpage/mainpage.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { ProductsComponent } from './products/products.component';
 import { BasketComponent } from './basket/basket.component';
+import { OrdersComponent } from './orders/orders.component';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -33,7 +34,8 @@ export let AppInjector: Injector;
     MainpageComponent,
     ProductDetailComponent,
     ProductsComponent,
-    BasketComponent
+    BasketComponent,
+    OrdersComponent
   ],
   imports: [
     BrowserModule,
