@@ -16,4 +16,8 @@ export class OrderService {
   getOrders() :Observable<Order[]>{
     return this.httpClient.get<Order[]>(this.apiUrl + '/GetOrders');
   }
+
+  addOrder(){
+    return this.httpClient.post(this.apiUrl + '/', {});
+  }
 }

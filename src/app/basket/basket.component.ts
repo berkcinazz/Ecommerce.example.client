@@ -1,6 +1,7 @@
 import { Component, NgIterable, OnInit } from '@angular/core';
 import { BasketService } from '../core/services/basket.service';
 import { GetBasketDto } from '../core/models/basket/getBasketDto';
+import { OrderService } from '../core/services/order.service';
 
 @Component({
   selector: 'app-basket',
@@ -10,7 +11,8 @@ import { GetBasketDto } from '../core/models/basket/getBasketDto';
 export class BasketComponent implements OnInit {
   basketItems: GetBasketDto[];
   totalAmount: number = 0;
-  constructor(private basketService: BasketService) {}
+  constructor(private basketService: BasketService,
+    private orderService:OrderService) {}
 
   ngOnInit(): void {
     this.getBasketItems();
@@ -47,5 +49,11 @@ export class BasketComponent implements OnInit {
   increaseQuantity(item: GetBasketDto) {
     item.quantity++;
     this.basketService.update(item).subscribe((data) => {});
+  }
+
+  addOrder() {
+    this.orderService.addOrder().subscribe((data) => {
+      console.log(data);
+    });
   }
 }
